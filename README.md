@@ -74,13 +74,13 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
 The screenshots below show this fork's customized Amsterdam dashboard and settings.
 
 <div align="center">
-    <img src="docs/screenshots/readme/amsterdam-01-main-light.png" alt="Amsterdam weather dashboard in light mode" style="width: 300px" />
-    <img src="docs/screenshots/readme/amsterdam-02-main-dark.png" alt="Amsterdam weather dashboard in dark mode" style="width: 300px" />
-    <img src="docs/screenshots/readme/amsterdam-03-forecasts.png" alt="Amsterdam daily and hourly forecasts" style="width: 300px" />
-    <img src="docs/screenshots/readme/amsterdam-04-weather-cards.png" alt="Amsterdam weather detail cards" style="width: 300px" />
-    <img src="docs/screenshots/readme/amsterdam-05-appearance.png" alt="Appearance settings" style="width: 300px" />
-    <img src="docs/screenshots/readme/amsterdam-06-weather-sources.png" alt="Weather source settings" style="width: 300px" />
-    <img src="docs/screenshots/readme/amsterdam-07-forecast-details.png" alt="Detailed Amsterdam forecast" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-celsius-01-main-light.png" alt="Amsterdam weather dashboard in light mode" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-celsius-02-main-dark.png" alt="Amsterdam weather dashboard in dark mode" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-celsius-03-forecasts.png" alt="Amsterdam daily and hourly forecasts" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-celsius-04-weather-cards.png" alt="Amsterdam weather detail cards" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-celsius-05-appearance.png" alt="Appearance settings" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-celsius-06-weather-sources.png" alt="Weather source settings" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-celsius-07-forecast-details.png" alt="Detailed Amsterdam forecast" style="width: 300px" />
 </div>
 
 # ✨ Features
