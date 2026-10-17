@@ -5,8 +5,9 @@
     android:id="@+id/container_main_pollen"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraLarge"
-    app:strokeWidth="0dp">
+    app:shapeAppearance="@style/BreezyWeatherSquareCardShape"
+    app:strokeColor="?attr/colorOutline"
+    app:strokeWidth="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -93,7 +94,8 @@
                 android:layout_marginStart="4dp"
                 app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
                 app:layout_constraintStart_toEndOf="@+id/title_icon"
-                app:layout_constraintTop_toTopOf="@+id/block_top_guideline" />
+                app:layout_constraintTop_toTopOf="@+id/block_top_guideline"
+                android:fontFamily="@font/ibm_plex_mono"/>
 
             <RelativeLayout
                 android:id="@+id/pollen_item_1"

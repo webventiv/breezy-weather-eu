@@ -460,6 +460,7 @@
     <string name="location_current_not_found_yet">Current location not found yet…</string>
     <!-- Example: Last updated 3 hours ago. Don't translate “3 hours ago”. For example in Spanish, “3 hours ago” will be replaced by “hace 3 horas” so don’t translate as “Last updated hace %s”, or it will display as “Last updated hace hace 3 horas” -->
     <string name="location_last_updated_x">Last updated %s</string>
+    <string name="location_last_updated">Last updated</string>
     <!-- Displayed in the location list when the location has at least 1 alert currently active -->
     <string name="location_has_active_alerts">Active alert</string>
     <string name="location_service_native">Native API</string>
@@ -785,6 +786,10 @@
     <string name="settings_appearance_dark_mode_locations_day_night">Follow day/night</string>
     <string name="settings_appearance_dark_mode_locations_dark">Always dark when app is in dark mode</string>
     <string name="settings_appearance_icon_pack_title">Icon pack</string>
+    <string name="settings_appearance_icon_color_title">Icon color</string>
+    <string name="settings_appearance_icon_color_hue">Hue</string>
+    <string name="settings_appearance_icon_color_saturation">Saturation</string>
+    <string name="settings_appearance_icon_color_brightness">Brightness</string>
     <string name="settings_icon_packs_title">Icon packs</string>
     <string name="settings_icon_packs_check_details">Check details</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Weather icon</string>

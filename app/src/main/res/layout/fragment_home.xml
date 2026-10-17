@@ -31,7 +31,7 @@
                 app:navigationContentDescription="@string/action_location_list"
                 app:navigationIconTint="?attr/colorSurfaceInverse"
                 app:titleTextColor="?attr/colorSurfaceInverse"
-                app:titleTextAppearance="?attr/textAppearanceHeadline6"
+                app:titleTextAppearance="@style/BreezyWeather.LocationTitle"
                 tools:ignore="RtlSymmetry" />
 
         </com.google.android.material.appbar.AppBarLayout>

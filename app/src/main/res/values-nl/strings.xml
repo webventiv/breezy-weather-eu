@@ -75,6 +75,10 @@
     <string name="settings_appearance_language_title">Taal</string>
     <string name="settings_notifications_section_forecast">Verwachting</string>
     <string name="settings_appearance_icon_pack_title">Pictogrammen</string>
+    <string name="settings_appearance_icon_color_title">Kleur pictogrammen</string>
+    <string name="settings_appearance_icon_color_hue">Tint</string>
+    <string name="settings_appearance_icon_color_saturation">Verzadiging</string>
+    <string name="settings_appearance_icon_color_brightness">Helderheid</string>
     <string name="settings_modules_notification_temp_icon_switch">Temperatuur als statusbalkpictogram</string>
     <string name="settings_color_light">Licht</string>
     <string name="settings_color_grey">Grijs</string>
@@ -602,6 +606,7 @@
     <string name="common_weather_text_cold">Koud</string>
     <string name="common_weather_text_warm">Warm</string>
     <string name="location_last_updated_x">Laatste update %s</string>
+    <string name="location_last_updated">Laatst bijgewerkt</string>
     <string name="location_has_active_alerts">Actuele waarschuwing</string>
     <string name="settings_weather_source_not_configured">%s (niet ingesteld)</string>
     <string name="location_custom_name">Aangepaste naam</string>

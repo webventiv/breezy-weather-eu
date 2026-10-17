@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:backgroundTint="@color/alert_background"
-    app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraLarge"
-    app:strokeWidth="0dp">
+    app:shapeAppearance="@style/BreezyWeatherSquareCardShape"
+    app:strokeColor="?attr/colorOutline"
+    app:strokeWidth="1dp">
 
     <androidx.compose.ui.platform.ComposeView
         android:id="@+id/container_main_first_card_alert_list"

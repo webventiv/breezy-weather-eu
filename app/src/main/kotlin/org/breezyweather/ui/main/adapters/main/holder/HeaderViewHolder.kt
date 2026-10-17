@@ -23,6 +23,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -32,21 +33,24 @@ import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.model.getTemperatureRangeSummary
 import org.breezyweather.ui.common.widgets.NumberAnimTextView
-import org.breezyweather.ui.main.widgets.TextRelativeClock
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.formatting.format
 import kotlin.math.abs
 import kotlin.math.roundToInt
+import java.text.SimpleDateFormat
 import kotlin.time.Duration.Companion.milliseconds
 
 class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_header, parent, false)
 ) {
     private val timezoneText: TextView = itemView.findViewById(R.id.container_main_header_timezone)
-    private val refreshTimeText: TextRelativeClock = itemView.findViewById(R.id.refreshTimeText)
+    private val refreshTimeText: TextView = itemView.findViewById(R.id.refreshTimeText)
+    private val lastUpdatedLabel: TextView = itemView.findViewById(R.id.container_main_header_last_updated_label)
+    private val weatherIcon: ImageView = itemView.findViewById(R.id.container_main_header_weather_icon)
     private val mTemperatureContainer: RelativeLayout = itemView.findViewById(R.id.container_main_header_temperature)
     private val mTemperature: NumberAnimTextView = itemView.findViewById(R.id.container_main_header_temperature_value)
     private val mTemperatureUnitView: TextView = itemView.findViewById(R.id.container_main_header_temperature_unit)
@@ -75,13 +79,27 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
 
         location.weather?.base?.refreshTime?.let {
             refreshTimeText.visibility = View.VISIBLE
-            refreshTimeText.setDate(it)
+            lastUpdatedLabel.visibility = View.VISIBLE
+            refreshTimeText.text = SimpleDateFormat("HH:mm", context.currentLocale).apply {
+                timeZone = location.timeZone
+            }.format(it)
+            refreshTimeText.contentDescription = context.getString(
+                R.string.location_last_updated_x,
+                refreshTimeText.text
+            )
         } ?: run {
             refreshTimeText.visibility = View.GONE
+            lastUpdatedLabel.visibility = View.GONE
         }
 
         val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
         location.weather?.current?.let { current ->
+            current.weatherCode?.let { weatherCode ->
+                weatherIcon.visibility = View.VISIBLE
+                weatherIcon.setImageDrawable(provider.getWeatherIcon(weatherCode, location.isDaylight))
+            } ?: run {
+                weatherIcon.visibility = View.GONE
+            }
             if (!current.weatherText.isNullOrEmpty()) {
                 mWeatherText.visibility = View.VISIBLE
                 mWeatherText.text = current.weatherText
@@ -104,6 +122,7 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
                     .milliseconds
                 mTemperatureUnitView.text = temperatureUnit.getNominativeUnit(context)
             } ?: run {
+                weatherIcon.visibility = View.GONE
                 mTemperatureContainer.visibility = View.GONE
             }
             current.temperature?.feelsLikeTemperature?.let { feelsLike ->

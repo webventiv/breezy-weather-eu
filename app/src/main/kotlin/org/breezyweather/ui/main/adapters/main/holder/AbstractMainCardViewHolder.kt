@@ -17,15 +17,19 @@
 package org.breezyweather.ui.main.adapters.main.holder
 
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
+import android.widget.ImageView
 import androidx.annotation.CallSuper
+import androidx.core.widget.ImageViewCompat
 import breezyweather.domain.location.model.Location
 import com.google.android.material.card.MaterialCardView
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.dpToPx
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
 @SuppressLint("ObjectAnimatorBinding")
@@ -44,6 +48,17 @@ abstract class AbstractMainCardViewHolder(
     ) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
         mLocation = location
+        val iconTint = ColorStateList.valueOf(SettingsManager.getInstance(context).iconColor)
+        listOf(
+            R.id.title_icon,
+            R.id.daily_block_title_icon,
+            R.id.hourly_block_title_icon,
+            R.id.nowcasting_block_title_icon
+        ).forEach { iconId ->
+            itemView.findViewById<ImageView>(iconId)?.let { icon ->
+                ImageViewCompat.setImageTintList(icon, iconTint)
+            }
+        }
         if (itemView is MaterialCardView) {
             (itemView as MaterialCardView).apply {
                 elevation = context.dpToPx(2f)

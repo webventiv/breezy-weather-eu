@@ -6,8 +6,9 @@
     android:layout_margin="0dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
-    app:strokeWidth="0dp">
+    app:shapeAppearance="@style/BreezyWeatherSquareCardShape"
+    app:strokeColor="?attr/colorOutline"
+    app:strokeWidth="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -58,6 +59,20 @@
                 android:importantForAccessibility="no"
                 android:src="@drawable/visibility_shape" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/title_top_guideline"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.08" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/title_start_guideline"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.08" />
+
             <ImageView
                 android:id="@+id/title_icon"
                 android:layout_width="0dp"
@@ -68,18 +83,18 @@
                 android:src="@drawable/ic_eye"
                 app:layout_constraintBottom_toBottomOf="@+id/title"
                 app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@+id/title"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
+                app:layout_constraintStart_toStartOf="@+id/title_start_guideline"
                 app:layout_constraintTop_toTopOf="@+id/title" />
 
             <TextView
                 android:id="@+id/title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:accessibilityHeading="true"
                 android:maxLines="1"
+                android:gravity="start"
+                android:textAlignment="viewStart"
                 android:text="@string/visibility"
                 android:textAppearance="?attr/textAppearanceLabelLarge"
                 android:textColor="?attr/colorSurfaceInverse"
@@ -87,7 +102,8 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
                 app:layout_constraintStart_toEndOf="@+id/title_icon"
-                app:layout_constraintTop_toTopOf="@+id/block_top_guideline" />
+                app:layout_constraintTop_toTopOf="@+id/title_top_guideline"
+                android:fontFamily="@font/ibm_plex_mono"/>
 
             <TextView
                 android:id="@+id/visibility_value"

@@ -5,8 +5,9 @@
     android:id="@+id/container_main_hourly_trend_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraLarge"
-    app:strokeWidth="0dp">
+    app:shapeAppearance="@style/BreezyWeatherSquareCardShape"
+    app:strokeColor="?attr/colorOutline"
+    app:strokeWidth="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -34,7 +35,8 @@
             android:layout_marginTop="@dimen/large_margin"
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toEndOf="@+id/nowcasting_block_title_icon"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="@font/ibm_plex_mono"/>
 
         <TextView
             android:id="@+id/nowcasting_block_subtitle"

@@ -22,6 +22,11 @@ import android.content.Context
 import android.os.Build
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,17 +37,24 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
@@ -50,6 +62,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.background
 import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
@@ -231,7 +244,7 @@ fun AppearanceSettingsScreen(
                     summary = ResourcesProviderFactory
                         .getNewInstance(iconProviderState.value)
                         .providerName,
-                    isLast = true
+                    isLast = false
                 ) {
                     dialogIconPackOpenState.value = true
                     /*(context as? Activity)?.let { activity ->
@@ -348,9 +361,102 @@ fun AppearanceSettingsScreen(
                     )
                 }
             }
+            smallSeparatorItem()
+            clickablePreferenceItem(R.string.settings_appearance_icon_color_title) { id ->
+                val colorState = rememberSaveable {
+                    mutableStateOf(SettingsManager.getInstance(context).iconColor)
+                }
+                val dialogOpenState = rememberSaveable { mutableStateOf(false) }
+                PreferenceViewWithCard(
+                    title = stringResource(id),
+                    summary = "#%06X".format(colorState.value and 0xFFFFFF),
+                    isLast = true
+                ) {
+                    dialogOpenState.value = true
+                }
+                if (dialogOpenState.value) {
+                    IconColorPickerDialog(
+                        initialColor = colorState.value,
+                        onDismiss = { dialogOpenState.value = false },
+                        onSave = { color ->
+                            SettingsManager.getInstance(context).iconColor = color
+                            colorState.value = color
+                            dialogOpenState.value = false
+                        }
+                    )
+                }
+            }
             sectionFooterItem(R.string.settings_appearance_section_theme)
 
             bottomInsetItem()
         }
     }
+}
+
+@Composable
+private fun IconColorPickerDialog(
+    initialColor: Int,
+    onDismiss: () -> Unit,
+    onSave: (Int) -> Unit,
+) {
+    val initial = Color(initialColor)
+    var hue by remember(initialColor) { mutableStateOf(initial.hue()) }
+    var saturation by remember(initialColor) { mutableStateOf(initial.saturation()) }
+    var brightness by remember(initialColor) { mutableStateOf(initial.brightness()) }
+    val selectedColor = Color.hsv(hue, saturation, brightness)
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.settings_appearance_icon_color_title)) },
+        text = {
+            Column {
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    androidx.compose.foundation.layout.Box(
+                        modifier = Modifier.size(36.dp).clip(CircleShape).background(selectedColor)
+                    )
+                    Text(
+                        text = "#%06X".format(selectedColor.toArgb() and 0xFFFFFF),
+                        modifier = Modifier.padding(start = 12.dp)
+                    )
+                }
+                Text(stringResource(R.string.settings_appearance_icon_color_hue))
+                Slider(value = hue, onValueChange = { hue = it }, valueRange = 0f..360f)
+                Text(stringResource(R.string.settings_appearance_icon_color_saturation))
+                Slider(value = saturation, onValueChange = { saturation = it }, valueRange = 0f..1f)
+                Text(stringResource(R.string.settings_appearance_icon_color_brightness))
+                Slider(value = brightness, onValueChange = { brightness = it }, valueRange = 0f..1f)
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = { onSave(selectedColor.toArgb()) }) {
+                Text(stringResource(R.string.action_save))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text(stringResource(R.string.action_close))
+            }
+        }
+    )
+}
+
+private fun Color.hue(): Float {
+    val hsv = FloatArray(3)
+    android.graphics.Color.colorToHSV(toArgb(), hsv)
+    return hsv[0]
+}
+
+private fun Color.saturation(): Float {
+    val hsv = FloatArray(3)
+    android.graphics.Color.colorToHSV(toArgb(), hsv)
+    return hsv[1]
+}
+
+private fun Color.brightness(): Float {
+    val hsv = FloatArray(3)
+    android.graphics.Color.colorToHSV(toArgb(), hsv)
+    return hsv[2]
 }

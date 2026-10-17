@@ -88,6 +88,16 @@
         <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Toolbar.Popup.Primary</item>
     </style>
 
+    <style name="BreezyWeatherSquareCardShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0dp</item>
+    </style>
+
+    <style name="BreezyWeather.LocationTitle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:fontFamily">@font/d_din</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <!-- card. -->
     <style name="material_card">
         <item name="android:layout_width">match_parent</item>
@@ -308,6 +318,7 @@
 
     <!-- Weather blocks -->
     <style name="Weather.TextAppearance.MainBlock.NumberDigit" parent="@style/TextAppearance.Material3.DisplaySmall">
+        <item name="android:fontFamily">@font/d_din</item>
         <item name="android:textSize">45sp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:letterSpacing">0</item>

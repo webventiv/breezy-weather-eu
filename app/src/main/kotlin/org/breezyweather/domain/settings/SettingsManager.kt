@@ -91,6 +91,7 @@ class SettingsManager private constructor(
 
         const val DEFAULT_TODAY_FORECAST_TIME = "07:00"
         const val DEFAULT_TOMORROW_FORECAST_TIME = "21:00"
+        const val DEFAULT_ICON_COLOR = 0xFFFF7900.toInt()
     }
 
     private val config = ConfigStore(context)
@@ -265,6 +266,13 @@ class SettingsManager private constructor(
     }
 
     // appearance.
+    var iconColor: Int
+        set(value) {
+            config.edit().putInt("icon_color", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getInt("icon_color", DEFAULT_ICON_COLOR)
+
     var iconProvider: String
         set(value) {
             config
