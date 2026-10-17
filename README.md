@@ -3,7 +3,7 @@
 <img src="app/src/res_breezy/mipmap-xxxhdpi/ic_launcher_round.webp" alt="Logo" />
 </div>
 
-<h1 align="center">Breezy Weather</h1>
+<h1 align="center">Breezy Weather EU (only personal use)</h1>
 
 <br />
 
@@ -68,13 +68,13 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
 <hr />
 
 <div align="center">
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01-main-header-light.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/02-main-header-dark.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/03-main-blocks-1.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/04-main-blocks-2.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/05-settings.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/06-sources.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/07-details.png" alt="" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01-main-header-light.png" alt="Amsterdam weather dashboard in light mode" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/02-main-header-dark.png" alt="Amsterdam weather dashboard in dark mode" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/03-main-blocks-1.png" alt="Amsterdam daily and hourly forecasts" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/04-main-blocks-2.png" alt="Amsterdam weather detail cards" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/05-settings.png" alt="Appearance settings" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/06-sources.png" alt="Weather source settings" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/07-details.png" alt="Detailed Amsterdam forecast" style="width: 300px" />
 </div>
 
 # ✨ Features
@@ -169,17 +169,6 @@ Pull requests are welcome. You can have a look at [issues opened to contribution
 - Implement features that are no longer available in latest Android versions
 - Backport features/fixes from latest Android versions to older Android versions
 - Donations: if you have extra money to spare, consider [donating to Open-Meteo](https://github.com/sponsors/open-meteo) to support infrastructure costs and future developments (we currently lack a libre and gratis worldwide alternative for the following features: [Reverse geocoding](https://github.com/open-meteo/geocoding-api/issues/6), [Alerts](https://github.com/open-meteo/open-meteo/issues/351), [Normals](https://github.com/open-meteo/open-meteo/issues/361))
-
-
-# 🌍 Translations
-
-Translation is done externally [on Weblate](https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/#information). Please read carefully project instructions if you want to help.
-
-[![Translation progress report](https://hosted.weblate.org/widget/breezy-weather/breezy-weather-android/multi-auto.svg)](https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/#information)
-
-English (and regional variants) and French translations are maintained by repo maintainers, but they are open to proofreading/improvements. You will need to make a pull request, as we didn’t find a way to make these languages in suggestion-only mode in Weblate (let us know if you find anything).
-
-For unit formatting, we use [Unicode data](https://www.unicode.org/cldr/charts/47/summary/root.html) as much as possible. If you believe there is an error, please [open a discussion](https://github.com/breezy-weather/breezy-weather/discussions/categories/general) with evidences that the changes you suggest is the recommendation for your language.
 
 
 # ✉️ Contact us
