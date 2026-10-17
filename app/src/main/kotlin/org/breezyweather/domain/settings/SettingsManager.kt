@@ -329,7 +329,7 @@ class SettingsManager private constructor(
             config.edit().putBoolean("main_screen_background", value).apply()
             notifySettingsChanged()
         }
-        get() = config.getBoolean("main_screen_background", true)
+        get() = config.getBoolean("main_screen_background", false)
 
     var isTrendHorizontalLinesEnabled: Boolean
         set(value) {
