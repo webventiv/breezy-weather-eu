@@ -1,9 +1,11 @@
 <div align="center">
 <br />
-<img src="app/src/res_breezy/mipmap-xxxhdpi/ic_launcher_round.webp" alt="Logo" />
+<img src="app/src/res_fork/mipmap-xxxhdpi/ic_launcher_round.webp" alt="Breezy Weather EU fork icon" />
 </div>
 
 <h1 align="center">Breezy Weather EU (only personal use)</h1>
+
+<p align="center"><strong>Personal-use fork with a custom dashboard layout and visual style. This is not an official Breezy Weather release.</strong></p>
 
 <br />
 
@@ -42,6 +44,8 @@
 
 # ⬇️ Download
 
+The download links below are for the official Breezy Weather app, not for this personal fork.
+
 <a href="https://github.com/breezy-weather/breezy-weather/releases">
 <img src="https://user-images.githubusercontent.com/69304392/148696068-0cfea65d-b18f-4685-82b5-329a330b1c0d.png"
 alt="Get it on GitHub" align="center" height="80" /></a>
@@ -67,14 +71,16 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
 
 <hr />
 
+The screenshots below show this fork's customized Amsterdam dashboard and settings.
+
 <div align="center">
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01-main-header-light.png" alt="Amsterdam weather dashboard in light mode" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/02-main-header-dark.png" alt="Amsterdam weather dashboard in dark mode" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/03-main-blocks-1.png" alt="Amsterdam daily and hourly forecasts" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/04-main-blocks-2.png" alt="Amsterdam weather detail cards" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/05-settings.png" alt="Appearance settings" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/06-sources.png" alt="Weather source settings" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/07-details.png" alt="Detailed Amsterdam forecast" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-01-main-light.png" alt="Amsterdam weather dashboard in light mode" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-02-main-dark.png" alt="Amsterdam weather dashboard in dark mode" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-03-forecasts.png" alt="Amsterdam daily and hourly forecasts" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-04-weather-cards.png" alt="Amsterdam weather detail cards" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-05-appearance.png" alt="Appearance settings" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-06-weather-sources.png" alt="Weather source settings" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-07-forecast-details.png" alt="Detailed Amsterdam forecast" style="width: 300px" />
 </div>
 
 # ✨ Features
