@@ -25,6 +25,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
@@ -46,8 +47,8 @@ import org.breezyweather.common.extensions.getBlocksPerRow
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.isMotionReduced
-import org.breezyweather.common.extensions.isTabletDevice
 import org.breezyweather.common.extensions.setSystemBarStyle
+import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.options.appearance.BackgroundAnimationMode
 import org.breezyweather.databinding.FragmentHomeBinding
 import org.breezyweather.domain.location.model.getPlace
@@ -83,7 +84,6 @@ class HomeFragment : MainModuleFragment() {
     interface Callback {
         fun onEditIconClicked()
         fun onManageIconClicked()
-        fun onOpenInOtherAppIconClicked()
     }
 
     override fun onCreateView(
@@ -196,13 +196,11 @@ class HomeFragment : MainModuleFragment() {
         binding.toolbar.inflateMenu(R.menu.activity_main)
         binding.toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.action_edit -> callback?.onEditIconClicked()
-                R.id.action_open_in_other_app -> callback?.onOpenInOtherAppIconClicked()
+                R.id.action_settings -> IntentHelper.startSettingsActivity(requireActivity())
+                R.id.action_dashboard_settings -> IntentHelper.startMainScreenSettingsActivity(requireActivity())
             }
             true
         }
-        binding.toolbar.menu.findItem(R.id.action_edit).isVisible = false
-        binding.toolbar.menu.findItem(R.id.action_open_in_other_app).isVisible = false
         // Needed to get the icon to show the correct color depending on dark mode
         binding.toolbar.overflowIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_more_vert)
 
@@ -276,12 +274,8 @@ class HomeFragment : MainModuleFragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.currentLocation.collect {
                     if (it?.location != null) {
-                        binding.toolbar.menu.findItem(R.id.action_edit).isVisible = true
-                        binding.toolbar.menu.findItem(R.id.action_open_in_other_app).isVisible = true
                         binding.emptyText.visibility = if (it.location.weather != null) View.GONE else View.VISIBLE
                     } else {
-                        binding.toolbar.menu.findItem(R.id.action_edit).isVisible = false
-                        binding.toolbar.menu.findItem(R.id.action_open_in_other_app).isVisible = false
                         binding.emptyText.visibility = View.GONE
                     }
                     if (it?.location != lastCurrentLocation) {
@@ -408,13 +402,15 @@ class HomeFragment : MainModuleFragment() {
             WeatherView.WEATHER_KIND_NULL
         }
 
-        // Show "current position" icon:
-        // - On the left on mobile because it might not be visible on small displays otherwise
-        // - On the right on tablet because on the left it would be confused with the action icon
-        binding.toolbar.title =
-            (if (location?.isCurrentPosition == true && !requireContext().isTabletDevice) "⊙ " else "") +
-            (location?.getPlace(requireContext()) ?: "") +
-            (if (location?.isCurrentPosition == true && requireContext().isTabletDevice) " ⊙" else "")
+        binding.toolbar.title = location?.getPlace(requireContext()) ?: ""
+        val titleViews = ArrayList<View>()
+        binding.toolbar.findViewsWithText(titleViews, binding.toolbar.title, View.FIND_VIEWS_WITH_TEXT)
+        titleViews.filterIsInstance<TextView>().firstOrNull()?.let { title ->
+            title.setOnClickListener { callback?.onManageIconClicked() }
+            title.contentDescription = "${title.text}, ${requireContext().getString(R.string.action_location_list)}"
+            title.isClickable = true
+            title.isFocusable = true
+        }
 
         weatherView.setWeather(backgroundWeatherKind, daylight, requireContext().isDarkMode)
         binding.refreshLayout.setColorSchemeColors(

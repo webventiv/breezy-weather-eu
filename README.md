@@ -71,13 +71,12 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
 
 <hr />
 
-The screenshots below show this fork's customized Amsterdam dashboard and settings.
+The screenshots below show the refreshed Amsterdam dashboard, compact forecasts, weather cards, and settings. The dashboard screenshots were captured on 2026-10-18.
 
 <div align="center">
-    <img src="docs/screenshots/readme/amsterdam-celsius-01-main-light.png" alt="Amsterdam weather dashboard in light mode" style="width: 300px" />
-    <img src="docs/screenshots/readme/amsterdam-celsius-02-main-dark.png" alt="Amsterdam weather dashboard in dark mode" style="width: 300px" />
-    <img src="docs/screenshots/readme/amsterdam-celsius-03-forecasts.png" alt="Amsterdam daily and hourly forecasts" style="width: 300px" />
-    <img src="docs/screenshots/readme/amsterdam-celsius-04-weather-cards.png" alt="Amsterdam weather detail cards" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-celsius-2026-10-18-01-dashboard.png" alt="Amsterdam weather dashboard" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-celsius-2026-10-18-02-forecasts.png" alt="Compact Amsterdam daily and hourly forecasts" style="width: 300px" />
+    <img src="docs/screenshots/readme/amsterdam-celsius-2026-10-18-03-weather-cards-footer.png" alt="Amsterdam weather cards and KNMI footer" style="width: 300px" />
     <img src="docs/screenshots/readme/amsterdam-celsius-05-appearance.png" alt="Appearance settings" style="width: 300px" />
     <img src="docs/screenshots/readme/amsterdam-celsius-06-weather-sources.png" alt="Weather source settings" style="width: 300px" />
     <img src="docs/screenshots/readme/amsterdam-celsius-07-forecast-details.png" alt="Detailed Amsterdam forecast" style="width: 300px" />

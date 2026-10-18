@@ -886,16 +886,6 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
         }
     }
 
-    override fun onOpenInOtherAppIconClicked() {
-        viewModel.currentLocation.value?.location?.let {
-            try {
-                IntentHelper.startBreezyActivity(this@MainActivity, it)
-            } catch (ignored: Exception) {
-                SnackbarHelper.showSnackbar(getString(R.string.action_open_in_other_app_no_app))
-            }
-        }
-    }
-
     override fun onManageIconClicked() {
         setManagementFragmentVisibility(!isOrWillManagementFragmentVisible)
     }

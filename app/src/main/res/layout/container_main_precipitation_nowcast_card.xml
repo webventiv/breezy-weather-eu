@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     app:shapeAppearance="@style/BreezyWeatherSquareCardShape"
     app:strokeColor="?attr/colorOutline"
-    app:strokeWidth="1dp">
+    app:strokeWidth="0.7dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,17 +26,16 @@
             app:layout_constraintTop_toTopOf="@+id/nowcasting_block_title" />
 
         <TextView
+                style="@style/main_block_title"
             android:id="@+id/nowcasting_block_title"
             android:accessibilityHeading="true"
-            android:textAppearance="?attr/textAppearanceLabelLarge"
             android:textColor="?attr/colorSurfaceInverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/large_margin"
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toEndOf="@+id/nowcasting_block_title_icon"
-            app:layout_constraintTop_toTopOf="parent"
-            android:fontFamily="@font/ibm_plex_mono"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/nowcasting_block_subtitle"

@@ -22,12 +22,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.annotation.CallSuper
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Icon
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
@@ -53,6 +55,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withLink
+import androidx.compose.ui.unit.sp
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceFeature
@@ -112,23 +115,36 @@ class FooterViewHolder(
             )
         }
 
-        Row(
+        val forecastAttribution = forecastSource?.supportedFeatures
+            ?.getOrElse(SourceFeature.FORECAST) { null }
+        val sourceLabel = forecastSource?.id?.uppercase() ?: "KNMI"
+        Column(
             modifier = modifier
-                .padding(dimensionResource(R.dimen.normal_margin).div(2))
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+                .padding(horizontal = dimensionResource(R.dimen.main_card_spacing), vertical = dimensionResource(R.dimen.small_margin))
+                .fillMaxWidth()
         ) {
-            Text(
-                text = buildAnnotatedString {
-                    forecastSource?.supportedFeatures?.getOrElse(SourceFeature.FORECAST) { null }?.let {
-                        if (forecastSource is HttpSource && forecastSource.attributionLinks.isNotEmpty()) {
-                            val splits = it.splitKeeping(*forecastSource.attributionLinks.keys.toTypedArray())
-                            splits.forEach { split ->
-                                forecastSource.attributionLinks.getOrElse(split) { null }?.let { link ->
+            HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.55f))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        start = dimensionResource(R.dimen.small_margin),
+                        top = dimensionResource(R.dimen.small_margin),
+                        end = dimensionResource(R.dimen.small_margin)
+                    ),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    modifier = Modifier.weight(1f),
+                    text = buildAnnotatedString {
+                        forecastAttribution?.let {
+                            if (forecastSource is HttpSource && forecastSource.attributionLinks.isNotEmpty()) {
+                                if (forecastSource.id == "knmi" && forecastSource.attributionLinks[it] != null) {
+                                    val link = forecastSource.attributionLinks[it]!!
                                     withLink(
                                         LinkAnnotation.Clickable(
-                                            tag = split,
+                                            tag = it,
                                             styles = TextLinkStyles(
                                                 style = SpanStyle(textDecoration = TextDecoration.Underline)
                                             ),
@@ -138,27 +154,65 @@ class FooterViewHolder(
                                             }
                                         )
                                     ) {
-                                        append(split)
+                                        append(it.substringBefore(" (").replace(" Meteorologisch ", "\nMeteorologisch "))
                                     }
-                                } ?: append(split)
+                                } else {
+                                    val splits = it.splitKeeping(*forecastSource.attributionLinks.keys.toTypedArray())
+                                    splits.forEach { split ->
+                                        forecastSource.attributionLinks[split]?.let { link ->
+                                            withLink(
+                                                LinkAnnotation.Clickable(
+                                                    tag = split,
+                                                    styles = TextLinkStyles(
+                                                        style = SpanStyle(textDecoration = TextDecoration.Underline)
+                                                    ),
+                                                    linkInteractionListener = {
+                                                        linkToOpen.value = link
+                                                        dialogLinkOpenState.value = true
+                                                    }
+                                                )
+                                            ) {
+                                                append(split)
+                                            }
+                                        } ?: append(split)
+                                        }
+                                }
+                            } else {
+                                append(it)
                             }
-                        } else {
-                            append(it)
+                        } ?: withLink(moreClickableLinkAnnotation) {
+                            append(stringResource(R.string.data_sources))
                         }
-                        append(stringResource(R.string.dot_separator))
-                        withLink(moreClickableLinkAnnotation) { append(stringResource(R.string.action_more)) }
-                    } ?: withLink(moreClickableLinkAnnotation) { append(stringResource(R.string.data_sources)) }
-                },
-                color = Color(
-                    delegate.getOnBackgroundColor(
-                        context,
-                        WeatherViewController.getWeatherKind(location),
-                        WeatherViewController.isDaylight(location)
-                    )
-                ),
-                textAlign = TextAlign.Center,
-                fontWeight = FontWeight.Bold
-            )
+                    },
+                    color = Color(
+                        delegate.getOnBackgroundColor(
+                            context,
+                            WeatherViewController.getWeatherKind(location),
+                            WeatherViewController.isDaylight(location)
+                        )
+                    ),
+                    textAlign = TextAlign.Start,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 12.sp,
+                    maxLines = 2
+                )
+                Text(
+                    text = buildAnnotatedString {
+                        withLink(moreClickableLinkAnnotation) { append("BRON: $sourceLabel  ↗") }
+                    },
+                    color = Color(
+                        delegate.getOnBackgroundColor(
+                            context,
+                            WeatherViewController.getWeatherKind(location),
+                            WeatherViewController.isDaylight(location)
+                        )
+                    ),
+                    textAlign = TextAlign.End,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 12.sp,
+                    maxLines = 1
+                )
+            }
         }
 
         if (dialogOpenState.value) {

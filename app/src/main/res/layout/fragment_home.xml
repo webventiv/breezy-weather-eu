@@ -23,16 +23,22 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="@dimen/action_bar_height"
                 android:background="@android:color/transparent"
                 android:elevation="0dp"
                 android:paddingEnd="@dimen/small_margin"
-                app:navigationIcon="@drawable/ic_list"
+                app:navigationIcon="@drawable/ic_location"
                 app:navigationContentDescription="@string/action_location_list"
-                app:navigationIconTint="?attr/colorSurfaceInverse"
+                app:navigationIconTint="?attr/colorPrimary"
                 app:titleTextColor="?attr/colorSurfaceInverse"
                 app:titleTextAppearance="@style/BreezyWeather.LocationTitle"
                 tools:ignore="RtlSymmetry" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/normal_margin"
+                android:background="?attr/colorOutline" />
 
         </com.google.android.material.appbar.AppBarLayout>
 

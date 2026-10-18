@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     app:shapeAppearance="@style/BreezyWeatherSquareCardShape"
     app:strokeColor="?attr/colorOutline"
-    app:strokeWidth="1dp">
+    app:strokeWidth="0.7dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -71,13 +71,11 @@
                 app:layout_constraintBottom_toBottomOf="@+id/title" />
 
             <TextView
+                style="@style/main_block_title"
                 android:id="@+id/title"
                 android:gravity="start"
                 android:accessibilityHeading="true"
-                android:textAppearance="?attr/textAppearanceLabelLarge"
                 android:textColor="?attr/colorSurfaceInverse"
-                android:textSize="@dimen/title_text_size"
-                android:textStyle="bold"
                 android:ellipsize="end"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -86,8 +84,7 @@
                 android:layout_marginStart="4dp"
                 app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
                 app:layout_constraintStart_toEndOf="@+id/title_icon"
-                app:layout_constraintTop_toTopOf="@+id/block_top_guideline"
-                android:fontFamily="@font/ibm_plex_mono"/>
+                app:layout_constraintTop_toTopOf="@+id/block_top_guideline"/>
 
             <TextView
                 android:id="@+id/rise_time"

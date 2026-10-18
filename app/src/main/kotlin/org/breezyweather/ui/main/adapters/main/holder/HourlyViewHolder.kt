@@ -19,17 +19,15 @@ package org.breezyweather.ui.main.adapters.main.holder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.HorizontalScrollView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.view.children
 import breezyweather.domain.location.model.Location
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.button.MaterialButtonGroup
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.domain.settings.SettingsManager
-import org.breezyweather.ui.common.adapters.ButtonAdapter
 import org.breezyweather.ui.common.widgets.trend.TrendLayoutManager
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.main.adapters.trend.HourlyTrendAdapter
@@ -41,7 +39,8 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_hourly_trend_card, parent, false)
 ) {
     private val subtitle: TextView = itemView.findViewById(R.id.hourly_block_subtitle)
-    private val buttonGroup: MaterialButtonGroup = itemView.findViewById(R.id.hourly_block_button_group)
+    private val tabScroller: HorizontalScrollView = itemView.findViewById(R.id.hourly_block_button_group)
+    private val tabRow: LinearLayout = itemView.findViewById(R.id.hourly_block_tab_row)
     private val trendRecyclerView: TrendRecyclerView = itemView.findViewById(R.id.hourly_block_trendRecyclerView)
     private val scrollBar: TrendRecyclerViewScrollBar = TrendRecyclerViewScrollBar()
 
@@ -73,13 +72,9 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         val trendAdapter = HourlyTrendAdapter(activity, trendRecyclerView).apply {
             bindData(location)
         }
-        val buttonList: MutableList<ButtonAdapter.Button> = trendAdapter.adapters.map {
-            object : ButtonAdapter.Button {
-                override val name = it.getDisplayName(activity)
-            }
-        }.toMutableList()
+        val buttonList = trendAdapter.adapters.map { it.getDisplayName(activity) }
         selectedTab?.let { tab ->
-            buttonList.indexOfFirst { it.name == tab }.let {
+            buttonList.indexOfFirst { it == tab }.let {
                 if (it >= 0) {
                     trendAdapter.selectedIndex = it
                 } else {
@@ -89,49 +84,18 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         }
 
         if (buttonList.size < 2) {
-            buttonGroup.visibility = View.GONE
+            tabScroller.visibility = View.GONE
         } else {
-            buttonGroup.visibility = View.VISIBLE
-            // Dirty trick to get the button group to actually redraw with the correct styles AND the overflow menu
-            while (
-                buttonGroup.children
-                    .filter { it is MaterialButton && it.tag != MaterialButtonGroup.OVERFLOW_BUTTON_TAG }
-                    .count() != 0
-            ) {
-                buttonGroup.children
-                    .filter { it is MaterialButton && it.tag != MaterialButtonGroup.OVERFLOW_BUTTON_TAG }
-                    .forEach {
-                        buttonGroup.removeView(it)
-                    }
-            }
-            buttonGroup.children
-                .filter { it is MaterialButton && it.tag == MaterialButtonGroup.OVERFLOW_BUTTON_TAG }
-                .forEach {
-                    it.contentDescription = context.getString(R.string.action_more)
+            tabScroller.visibility = View.VISIBLE
+            lateinit var bindTabs: () -> Unit
+            bindTabs = {
+                tabRow.bindTrendTabs(buttonList, trendAdapter.selectedIndex) { index ->
+                    trendAdapter.selectedIndex = index
+                    setSelectedTab(buttonList[index])
+                    bindTabs()
                 }
-            buttonList.forEachIndexed { index, button ->
-                buttonGroup.addView(
-                    MaterialButton(
-                        context,
-                        null,
-                        com.google.android.material.R.attr.materialButtonStyle
-                    ).apply {
-                        text = button.name
-                        isCheckable = true
-                        isChecked = index == trendAdapter.selectedIndex
-                        setOnClickListener {
-                            trendAdapter.selectedIndex = index
-                            setSelectedTab(button.name)
-                            buttonGroup.children
-                                .filter { it is MaterialButton && it.tag != MaterialButtonGroup.OVERFLOW_BUTTON_TAG }
-                                .forEach { button ->
-                                    (button as MaterialButton).isChecked = false
-                                }
-                            isChecked = true
-                        }
-                    }
-                )
             }
+            bindTabs()
         }
         trendRecyclerView.layoutManager = TrendLayoutManager(context)
         trendRecyclerView.setLineColor(

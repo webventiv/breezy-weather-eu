@@ -66,10 +66,10 @@ abstract class AbstractMainCardViewHolder(
         }
         val params = itemView.layoutParams as MarginLayoutParams
         params.setMargins(
-            context.resources.getDimensionPixelSize(R.dimen.small_margin),
-            context.resources.getDimensionPixelSize(R.dimen.small_margin),
-            context.resources.getDimensionPixelSize(R.dimen.small_margin),
-            context.resources.getDimensionPixelSize(R.dimen.small_margin)
+            context.resources.getDimensionPixelSize(R.dimen.main_card_spacing),
+            context.resources.getDimensionPixelSize(R.dimen.main_card_spacing),
+            context.resources.getDimensionPixelSize(R.dimen.main_card_spacing),
+            context.resources.getDimensionPixelSize(R.dimen.main_card_spacing)
         )
         itemView.layoutParams = params
     }

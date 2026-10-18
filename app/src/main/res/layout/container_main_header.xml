@@ -8,35 +8,24 @@
     android:background="@android:color/transparent"
     android:foreground="@drawable/selectable_item_background"
     android:gravity="bottom|start"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     android:paddingStart="@dimen/small_margin"
     android:paddingEnd="@dimen/small_margin"
-    android:paddingBottom="@dimen/normal_margin"
+    android:paddingBottom="@dimen/large_margin"
     tools:ignore="UnusedAttribute">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/container_main_header_date"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/container_main_header_timezone"
-            android:textSize="@dimen/content_text_size"
-            android:textColor="?attr/colorSurfaceInverse"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:backgroundTint="?attr/colorSurfaceInverse"
-            android:layout_marginBottom="@dimen/small_margin"
-            android:layout_gravity="end"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textAlignment="textEnd"
-            android:visibility="gone"
-            style="@style/large_title_text"
-            android:fontFamily="@font/ibm_plex_mono"
-            tools:text="Europe/Berlin"
-            tools:ignore="RelativeOverlap,RtlHardcoded" />
-
-    </LinearLayout>
+        android:layout_marginTop="@dimen/normal_margin"
+        android:textColor="?attr/colorSurfaceInverse"
+        android:textSize="@dimen/content_text_size"
+        android:fontFamily="@font/ibm_plex_mono"
+        android:letterSpacing="0.14"
+        android:textAllCaps="true"
+        tools:text="SATURDAY 18 OCTOBER" />
 
     <TextView
         android:id="@+id/container_main_header_weather_condition_description"
@@ -58,6 +47,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:gravity="center_vertical">
 
         <LinearLayout
@@ -91,15 +82,15 @@
 
                 <TextView
                     android:id="@+id/container_main_header_temperature_unit"
-                    android:layout_marginTop="5dp"
-                    android:textSize="50sp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="38sp"
                     android:textFontWeight="700"
                     android:includeFontPadding="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/container_main_header_temperature_value"
                     android:importantForAccessibility="no"
-                    android:textColor="?attr/colorSurfaceInverse"
+                    android:textColor="@color/colorTextGrey2nd"
                     android:fontFamily="@font/d_din"
                     style="@style/large_title_text"
                     tools:text="°C" />
@@ -141,32 +132,22 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="120dp"
+            android:layout_width="176dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/container_main_header_weather_icon"
-                android:layout_width="104dp"
-                android:layout_height="104dp"
+                android:layout_width="176dp"
+                android:layout_height="176dp"
                 android:importantForAccessibility="no"
                 android:scaleType="fitCenter"
+                android:translationY="-48dp"
                 tools:src="@drawable/weather_cloudy" />
-
-            <TextView
-                android:id="@+id/container_main_header_last_updated_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:maxLines="1"
-                android:textColor="?attr/colorSurfaceInverse"
-                android:textSize="9sp"
-                android:fontFamily="@font/ibm_plex_mono"
-                android:textAllCaps="true"
-                android:letterSpacing="0.08"
-                android:text="@string/location_last_updated"
-                tools:ignore="HardcodedText" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -192,6 +173,14 @@
                     android:textColor="?attr/colorSurfaceInverse"
                     android:textSize="@dimen/content_text_size"
                     tools:text="11:08" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="8dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_sync"
+                    android:tint="?attr/colorSurfaceInverse" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

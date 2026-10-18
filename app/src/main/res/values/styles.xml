@@ -95,7 +95,7 @@
 
     <style name="BreezyWeather.LocationTitle" parent="TextAppearance.Material3.TitleLarge">
         <item name="android:fontFamily">@font/d_din</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textStyle">normal</item>
     </style>
 
     <!-- card. -->
@@ -176,6 +176,19 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/subtitle_text_size</item>
         <item name="android:textColor">?attr/colorCaptionText</item>
+    </style>
+
+    <style name="main_block_title" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/ibm_plex_mono</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <style name="main_block_title_compact" parent="main_block_title">
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="notification_large_title_text" parent="@style/TextAppearance.Compat.Notification.Title">

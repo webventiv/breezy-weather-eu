@@ -8,7 +8,7 @@
     android:backgroundTint="@color/alert_background"
     app:shapeAppearance="@style/BreezyWeatherSquareCardShape"
     app:strokeColor="?attr/colorOutline"
-    app:strokeWidth="1dp">
+    app:strokeWidth="0.7dp">
 
     <androidx.compose.ui.platform.ComposeView
         android:id="@+id/container_main_first_card_alert_list"
