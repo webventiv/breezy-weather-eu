@@ -23,7 +23,7 @@ configure<ApplicationExtension> {
     namespace = "org.breezyweather"
 
     defaultConfig {
-        applicationId = "org.breezyweather"
+        applicationId = "eu.webventiv.weereu"
         versionCode = 60203
         versionName = "6.2.3"
 
