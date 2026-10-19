@@ -85,7 +85,7 @@
             android:gravity="start"
             android:textAlignment="viewStart"
             android:text="@string/uv_index_short"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="14dp"
             app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
             app:layout_constraintStart_toEndOf="@+id/title_icon"
             app:layout_constraintTop_toTopOf="@+id/title_top_guideline"/>

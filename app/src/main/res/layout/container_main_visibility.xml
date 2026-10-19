@@ -91,7 +91,7 @@
                 android:id="@+id/title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="14dp"
                 android:accessibilityHeading="true"
                 android:maxLines="1"
                 android:gravity="start"

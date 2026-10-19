@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="9:5"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -89,7 +89,7 @@
                 android:maxLines="1"
                 android:textAlignment="viewStart"
                 android:text="@string/pollen"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="14dp"
                 app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
                 app:layout_constraintStart_toEndOf="@+id/title_icon"
                 app:layout_constraintTop_toTopOf="@+id/block_top_guideline"/>

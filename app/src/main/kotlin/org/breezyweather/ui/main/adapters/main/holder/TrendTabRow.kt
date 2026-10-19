@@ -63,7 +63,10 @@ internal fun LinearLayout.bindTrendTabs(
             },
             LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, indicatorHeight)
         )
-        addView(tab, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f))
+        // Give each tab enough room for its label. Equal weights clip longer
+        // localized names such as "Luchtkwaliteit" on narrow screens.
+        val tabWidth = maxOf(minWidth, (name.length * 7.5f * density).toInt() + (16 * density).toInt())
+        addView(tab, LinearLayout.LayoutParams(tabWidth, ViewGroup.LayoutParams.WRAP_CONTENT))
     }
 
     if (names.size > 3) {

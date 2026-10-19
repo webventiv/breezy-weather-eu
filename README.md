@@ -5,7 +5,7 @@
 
 <h1 align="center">Breezy Weather EU (only personal use)</h1>
 
-<p align="center"><strong>Personal-use fork with a custom dashboard layout and visual style. This is not an official Breezy Weather release.</strong></p>
+<p align="center"><strong>Personal-use fork with a custom "Instrumental Minimalism" dashboard layout and visual style. This is not an official Breezy Weather release.</strong></p>
 
 <br />
 
@@ -38,7 +38,7 @@
 </div>
 
 
-<h4 align="center">Breezy Weather is a feature-rich free and open source Material 3 Expressive weather app with well-thought-out visualizations, supporting forecast, observations, nowcasting, air quality, pollen, alerts, from more than 50 weather sources.</h4>
+<h4 align="center">Breezy Weather is a feature-rich free and open source Instrumental Minimalism Expressive weather app with well-thought-out visualizations, supporting forecast, observations, nowcasting, air quality, pollen, alerts, from more than 50 weather sources.</h4>
 
 <div align="center">
 

@@ -108,7 +108,7 @@ class FooterViewHolder(
         val moreClickableLinkAnnotation = remember {
             LinkAnnotation.Clickable(
                 tag = context.getString(R.string.data_sources),
-                styles = TextLinkStyles(style = SpanStyle(textDecoration = TextDecoration.Underline)),
+                styles = TextLinkStyles(style = SpanStyle(textDecoration = TextDecoration.None)),
                 linkInteractionListener = {
                     dialogOpenState.value = true
                 }
@@ -146,7 +146,7 @@ class FooterViewHolder(
                                         LinkAnnotation.Clickable(
                                             tag = it,
                                             styles = TextLinkStyles(
-                                                style = SpanStyle(textDecoration = TextDecoration.Underline)
+                                                style = SpanStyle(textDecoration = TextDecoration.None)
                                             ),
                                             linkInteractionListener = {
                                                 linkToOpen.value = link
@@ -164,7 +164,7 @@ class FooterViewHolder(
                                                 LinkAnnotation.Clickable(
                                                     tag = split,
                                                     styles = TextLinkStyles(
-                                                        style = SpanStyle(textDecoration = TextDecoration.Underline)
+                                                    style = SpanStyle(textDecoration = TextDecoration.None)
                                                     ),
                                                     linkInteractionListener = {
                                                         linkToOpen.value = link
@@ -194,6 +194,7 @@ class FooterViewHolder(
                     textAlign = TextAlign.Start,
                     fontWeight = FontWeight.Bold,
                     fontSize = 12.sp,
+                    lineHeight = 14.sp,
                     maxLines = 2
                 )
                 Text(
@@ -210,6 +211,7 @@ class FooterViewHolder(
                     textAlign = TextAlign.End,
                     fontWeight = FontWeight.Bold,
                     fontSize = 12.sp,
+                    lineHeight = 14.sp,
                     maxLines = 1
                 )
             }

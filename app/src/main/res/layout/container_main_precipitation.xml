@@ -76,7 +76,7 @@
                 android:maxLines="1"
                 android:textAlignment="viewStart"
                 android:text="@string/precipitation"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="14dp"
                 app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
                 app:layout_constraintStart_toEndOf="@+id/title_icon"
                 app:layout_constraintTop_toTopOf="@+id/block_top_guideline"/>

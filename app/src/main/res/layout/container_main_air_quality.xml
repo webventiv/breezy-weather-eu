@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="9:5"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -72,7 +72,7 @@
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.08" />
+                app:layout_constraintGuide_percent="0.1" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/title_start_guideline"
@@ -95,7 +95,7 @@
                 app:layout_constraintTop_toTopOf="@+id/title" />
 
             <TextView
-                style="@style/main_block_title_compact"
+                style="@style/main_block_title"
                 android:id="@+id/title"
                 android:accessibilityHeading="true"
                 android:textColor="?attr/colorSurfaceInverse"
@@ -106,8 +106,9 @@
                 android:gravity="start"
                 android:textAlignment="viewStart"
                 android:text="@string/air_quality_short"
-                android:layout_marginStart="4dp"
-                app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/title_icon"
                 app:layout_constraintTop_toTopOf="@+id/title_top_guideline"/>
 
