@@ -35,6 +35,10 @@ import org.breezyweather.unit.formatting.UnitWidth
 class HumidityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_humidity, parent, false)
 ) {
+    private companion object {
+        const val HUMIDITY_WAVE_BACKGROUND_ALPHA = 0.15f
+    }
+
     private val humidityValueView: TextView = itemView.findViewById(R.id.humidity_value)
     private val wavesBackgroundView: ImageView = itemView.findViewById(R.id.waves_background)
     private val dewPointValueView: TextView = itemView.findViewById(R.id.dew_point_value)
@@ -66,6 +70,7 @@ class HumidityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                             }
                         )
                     )
+                    wavesBackgroundView.alpha = HUMIDITY_WAVE_BACKGROUND_ALPHA
                 }
                 talkBackBuilder.append(context.getString(R.string.colon_separator))
                 talkBackBuilder.append(humidityValueView.text)

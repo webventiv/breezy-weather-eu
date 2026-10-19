@@ -34,7 +34,7 @@
                 android:id="@+id/block_start_guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.08" />
+                app:layout_constraintGuide_percent="0.05" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:orientation="horizontal"
@@ -48,7 +48,7 @@
                 android:id="@+id/block_end_guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.92" />
+                app:layout_constraintGuide_percent="0.95" />
 
             <ImageView
                 android:id="@+id/waves_background"
@@ -59,12 +59,11 @@
             <ImageView
                 android:id="@+id/title_icon"
                 android:gravity="start"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
                 android:importantForAccessibility="no"
                 android:backgroundTint="?attr/colorSurfaceInverse"
                 android:src="@drawable/ic_humidity_percentage"
-                app:layout_constraintBottom_toBottomOf="@+id/title"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
                 app:layout_constraintTop_toTopOf="@+id/title" />
@@ -78,10 +77,10 @@
                 android:gravity="start"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:textAlignment="viewStart"
                 android:text="@string/humidity"
-                android:layout_marginStart="14dp"
+                android:layout_marginStart="10dp"
                 app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
                 app:layout_constraintStart_toEndOf="@+id/title_icon"
                 app:layout_constraintTop_toTopOf="@+id/block_top_guideline"/>

@@ -8,7 +8,7 @@
     <string name="notification_refreshed_at">Vernieuwd om</string>
     <string name="precipitation">Neerslag</string>
     <string name="wind">Wind</string>
-    <string name="humidity">Luchtvochtigheid</string>
+    <string name="humidity">Lucht-\nvochtigheid</string>
     <string name="humidity_dew_point">Luchtvochtigheid / Dauwpunt</string>
     <string name="uv_index">UV-index</string>
     <string name="notification_channel_forecast">Verwachting</string>
@@ -649,7 +649,7 @@
     <string name="air_quality_index_short">LKI</string>
     <string name="air_quality_index_about">Over de luchtkwaliteitsindex</string>
     <string name="air_quality_index_about_description_1">De Luchtkwaliteitsindex (LKI) is een schaal die wordt gebruikt om inzicht te krijgen in de mate van luchtverontreiniging in een bepaald gebied en de potentiële gezondheidsrisico’s die daarmee gepaard gaan.</string>
-    <string name="air_quality_short">Luchtkwaliteit</string>
+    <string name="air_quality_short">Lucht-\nkwaliteit</string>
     <string name="ephemeris_sun">Zon</string>
     <string name="ephemeris_moon">Maan</string>
     <string name="ephemeris_about">Over opkomst- en ondergangstijden</string>

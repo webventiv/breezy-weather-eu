@@ -18,6 +18,7 @@ package org.breezyweather.ui.main.adapters.main.holder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
@@ -33,6 +34,11 @@ import org.breezyweather.unit.formatting.UnitWidth
 class VisibilityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_visibility, parent, false)
 ) {
+    private companion object {
+        const val VISIBILITY_SHAPE_ALPHA = 0.15f
+    }
+
+    private val visibilityShapeView: ImageView = itemView.findViewById(R.id.visibility_shape)
     private val visibilityValueView: TextView = itemView.findViewById(R.id.visibility_value)
     private val visibilityDescriptionView: TextView = itemView.findViewById(R.id.visibility_description)
 
@@ -44,6 +50,8 @@ class VisibilityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         itemAnimationEnabled: Boolean,
     ) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
+
+        visibilityShapeView.alpha = VISIBILITY_SHAPE_ALPHA
 
         val talkBackBuilder = StringBuilder(context.getString(R.string.visibility))
 

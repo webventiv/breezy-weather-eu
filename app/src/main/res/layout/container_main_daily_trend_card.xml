@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/large_margin"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             android:text="@string/daily_forecast"
             app:layout_constraintStart_toEndOf="@+id/daily_block_title_icon"
             app:layout_constraintTop_toTopOf="parent"/>

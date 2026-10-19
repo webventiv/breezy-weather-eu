@@ -34,7 +34,7 @@
                 android:id="@+id/block_start_guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.1" />
+                app:layout_constraintGuide_percent="0.05" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:orientation="horizontal"
@@ -48,7 +48,7 @@
                 android:id="@+id/block_end_guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.9" />
+                app:layout_constraintGuide_percent="0.95" />
 
             <org.breezyweather.ui.common.widgets.astro.SunMoonView
                 android:id="@+id/container_main_sun_moon_controlView"
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:textAlignment="viewStart"
-                android:layout_marginStart="14dp"
+                android:layout_marginStart="10dp"
                 app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
                 app:layout_constraintStart_toEndOf="@+id/title_icon"
                 app:layout_constraintTop_toTopOf="@+id/block_top_guideline"/>

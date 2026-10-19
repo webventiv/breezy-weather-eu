@@ -24,7 +24,7 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.formatMeasure
-import org.breezyweather.common.extensions.formatValue
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -32,10 +32,16 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.ArcProgress
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.unit.formatting.UnitWidth
+import java.math.RoundingMode
+import java.text.NumberFormat
 
 class PressureViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_pressure, parent, false)
 ) {
+    private companion object {
+        const val PRESSURE_ARC_BACKGROUND_ALPHA = 0.05f
+    }
+
     private val pressureValueView: TextView = itemView.findViewById(R.id.pressure_value)
     private val pressureUnitView: TextView = itemView.findViewById(R.id.pressure_unit)
     private val pressureProgress: ArcProgress = itemView.findViewById(R.id.pressure_progress)
@@ -58,12 +64,20 @@ class PressureViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             mEnable = true
             pressureProgress.apply {
                 progress = mPressure.minus(963f)
-                pressureValueView.text = it.formatValue(context)
+                pressureValueView.text = NumberFormat.getNumberInstance(context.currentLocale).apply {
+                    maximumFractionDigits = 0
+                    roundingMode = RoundingMode.HALF_UP
+                }.format(it.toDouble(pressureUnit))
             }
             val pressureColor = context.getThemeColor(androidx.appcompat.R.attr.colorPrimary)
             pressureProgress.apply {
                 setProgressColor(pressureColor)
-                setArcBackgroundColor(ColorUtils.setAlphaComponent(pressureColor, (255 * 0.1).toInt()))
+                setArcBackgroundColor(
+                    ColorUtils.setAlphaComponent(
+                        pressureColor,
+                        (255 * PRESSURE_ARC_BACKGROUND_ALPHA).toInt()
+                    )
+                )
                 max = 100f
             }
 

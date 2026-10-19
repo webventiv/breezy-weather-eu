@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/large_margin"
             android:text="@string/hourly_forecast"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             app:layout_constraintStart_toEndOf="@+id/hourly_block_title_icon"
             app:layout_constraintTop_toTopOf="parent"/>
 
