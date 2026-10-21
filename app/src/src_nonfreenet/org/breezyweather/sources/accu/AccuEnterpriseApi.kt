@@ -22,6 +22,7 @@ import org.breezyweather.sources.accu.json.AccuAlertResult
 import org.breezyweather.sources.accu.json.AccuClimoSummaryResult
 import org.breezyweather.sources.accu.json.AccuMinutelyResult
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -33,7 +34,7 @@ interface AccuEnterpriseApi : AccuDeveloperApi {
     @GET("forecasts/v1/minute/{minutes}minute")
     fun getMinutely(
         @Path("minutes") minutes: Int,
-        @Query("apikey") apikey: String,
+        @Header("Authorization") authorization: String,
         @Query("q") q: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
@@ -41,7 +42,7 @@ interface AccuEnterpriseApi : AccuDeveloperApi {
 
     @GET("alerts/v1/geoposition")
     fun getAlertsByPosition(
-        @Query("apikey") apikey: String,
+        @Header("Authorization") authorization: String,
         @Query("q") q: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
@@ -50,7 +51,7 @@ interface AccuEnterpriseApi : AccuDeveloperApi {
     @GET("airquality/v2/forecasts/hourly/96hour/{city_key}")
     fun getAirQuality(
         @Path("city_key") cityKey: String,
-        @Query("apikey") apikey: String,
+        @Header("Authorization") authorization: String,
         @Query("pollutants") pollutants: Boolean,
         @Query("language") language: String,
     ): Observable<AccuAirQualityResult>
@@ -60,7 +61,7 @@ interface AccuEnterpriseApi : AccuDeveloperApi {
         @Path("year") year: Int,
         @Path("month") month: Int,
         @Path("city_key") cityKey: String,
-        @Query("apikey") apikey: String,
+        @Header("Authorization") authorization: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
     ): Observable<AccuClimoSummaryResult>

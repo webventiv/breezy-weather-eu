@@ -141,6 +141,7 @@ class AccuService @Inject constructor(
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val apiKey = getApiKeyOrDefault()
+        val authorization = "Bearer $apiKey"
         val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
         val locationKey = location.parameters.getOrElse(id) { null }?.getOrElse("locationKey") { null }
         if (
@@ -173,7 +174,7 @@ class AccuService @Inject constructor(
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(
                 locationKey!!,
-                apiKey,
+                authorization,
                 languageCode,
                 details = true
             ).onErrorResumeNext {
@@ -187,7 +188,7 @@ class AccuService @Inject constructor(
             mApi.getDaily(
                 days.id,
                 locationKey!!,
-                apiKey,
+                authorization,
                 languageCode,
                 details = true,
                 metric = metric
@@ -202,7 +203,7 @@ class AccuService @Inject constructor(
             mApi.getHourly(
                 hours.id,
                 locationKey!!,
-                apiKey,
+                authorization,
                 languageCode,
                 details = true,
                 metric = metric
@@ -216,7 +217,7 @@ class AccuService @Inject constructor(
         val minute = if (SourceFeature.MINUTELY in requestedFeatures && mApi is AccuEnterpriseApi) {
             mApi.getMinutely(
                 minutes = 1,
-                apiKey,
+                authorization,
                 location.latitude.toString() + "," + location.longitude,
                 languageCode,
                 details = true
@@ -230,14 +231,14 @@ class AccuService @Inject constructor(
         val alert = if (SourceFeature.ALERT in requestedFeatures) {
             if (mApi is AccuEnterpriseApi) {
                 mApi.getAlertsByPosition(
-                    apiKey,
+                    authorization,
                     location.latitude.toString() + "," + location.longitude,
                     languageCode,
                     details = true
                 ).onErrorResumeNext {
                     mApi.getAlertsByCityKey(
                         locationKey!!,
-                        apiKey,
+                        authorization,
                         languageCode,
                         details = true
                     ).onErrorResumeNext {
@@ -248,7 +249,7 @@ class AccuService @Inject constructor(
             } else {
                 mApi.getAlertsByCityKey(
                     locationKey!!,
-                    apiKey,
+                    authorization,
                     languageCode,
                     details = true
                 ).onErrorResumeNext {
@@ -265,7 +266,7 @@ class AccuService @Inject constructor(
         ) {
             mApi.getAirQuality(
                 locationKey!!,
-                apiKey,
+                authorization,
                 pollutants = true,
                 languageCode
             ).onErrorResumeNext {
@@ -284,7 +285,7 @@ class AccuService @Inject constructor(
                 cal[Calendar.YEAR],
                 cal[Calendar.MONTH] + 1,
                 locationKey!!,
-                apiKey,
+                authorization,
                 languageCode,
                 details = false
             ).onErrorResumeNext {
@@ -760,6 +761,7 @@ class AccuService @Inject constructor(
         query: String,
     ): Observable<List<LocationAddressInfo>> {
         val apiKey = getApiKeyOrDefault()
+        val authorization = "Bearer $apiKey"
         val languageCode = if (supportedLanguages.contains(context.currentLocale.codeWithCountry)) {
             context.currentLocale.codeWithCountry
         } else if (supportedLanguages.contains(context.currentLocale.code)) {
@@ -771,7 +773,7 @@ class AccuService @Inject constructor(
         }
         val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
         return mApi.getWeatherLocation(
-            apiKey,
+            authorization,
             query,
             languageCode,
             details = false,
@@ -789,6 +791,7 @@ class AccuService @Inject constructor(
         longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         val apiKey = getApiKeyOrDefault()
+        val authorization = "Bearer $apiKey"
         val languageCode = if (supportedLanguages.contains(context.currentLocale.codeWithCountry)) {
             context.currentLocale.codeWithCountry
         } else if (supportedLanguages.contains(context.currentLocale.code)) {
@@ -800,7 +803,7 @@ class AccuService @Inject constructor(
         }
         val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
         return mApi.getWeatherLocationByGeoPosition(
-            apiKey,
+            authorization,
             languageCode,
             details = false,
             "$latitude,$longitude"
@@ -962,6 +965,7 @@ class AccuService @Inject constructor(
         location: Location,
     ): Observable<Map<String, String>> {
         val apiKey = getApiKeyOrDefault()
+        val authorization = "Bearer $apiKey"
         val languageCode = if (supportedLanguages.contains(context.currentLocale.codeWithCountry)) {
             context.currentLocale.codeWithCountry
         } else if (supportedLanguages.contains(context.currentLocale.code)) {
@@ -973,7 +977,7 @@ class AccuService @Inject constructor(
         }
         val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
         return mApi.getWeatherLocationByGeoPosition(
-            apiKey,
+            authorization,
             languageCode,
             details = false,
             location.latitude.toString() + "," + location.longitude

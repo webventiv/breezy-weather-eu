@@ -23,6 +23,7 @@ import org.breezyweather.sources.accu.json.AccuForecastDailyResult
 import org.breezyweather.sources.accu.json.AccuForecastHourlyResult
 import org.breezyweather.sources.accu.json.AccuLocationResult
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -32,7 +33,7 @@ import retrofit2.http.Query
 interface AccuDeveloperApi {
     @GET("locations/v1/translate")
     fun getWeatherLocation(
-        @Query("apikey") apikey: String,
+        @Header("Authorization") authorization: String,
         @Query("q") q: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
@@ -41,7 +42,7 @@ interface AccuDeveloperApi {
 
     @GET("locations/v1/cities/geoposition/search")
     fun getWeatherLocationByGeoPosition(
-        @Query("apikey") apikey: String,
+        @Header("Authorization") authorization: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
         @Query("q") q: String,
@@ -50,7 +51,7 @@ interface AccuDeveloperApi {
     @GET("currentconditions/v1/{city_key}")
     fun getCurrent(
         @Path("city_key") cityKey: String,
-        @Query("apikey") apikey: String,
+        @Header("Authorization") authorization: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
     ): Observable<List<AccuCurrentResult>>
@@ -59,7 +60,7 @@ interface AccuDeveloperApi {
     fun getDaily(
         @Path("days") days: String,
         @Path("city_key") cityKey: String,
-        @Query("apikey") apikey: String,
+        @Header("Authorization") authorization: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
         @Query("metric") metric: Boolean,
@@ -69,7 +70,7 @@ interface AccuDeveloperApi {
     fun getHourly(
         @Path("hours") hours: String,
         @Path("city_key") cityKey: String,
-        @Query("apikey") apikey: String,
+        @Header("Authorization") authorization: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
         @Query("metric") metric: Boolean,
@@ -78,7 +79,7 @@ interface AccuDeveloperApi {
     @GET("alerts/v1/{city_key}")
     fun getAlertsByCityKey(
         @Path("city_key") cityKey: String,
-        @Query("apikey") apikey: String,
+        @Header("Authorization") authorization: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
     ): Observable<List<AccuAlertResult>>
