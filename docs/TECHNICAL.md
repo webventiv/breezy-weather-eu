@@ -13,7 +13,6 @@ breezy.atmofrance.key=myapikey
 breezy.atmograndest.key=myapikey
 breezy.atmohdf.key=myapikey
 breezy.atmosud.key=myapikey
-breezy.baiduip.key=myapikey
 breezy.eccc.key=myapikey
 breezy.geonames.key=myapikey
 breezy.here.key=myapikey

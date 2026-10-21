@@ -274,11 +274,6 @@ configure<ApplicationExtension> {
         )
         it.buildConfigField(
             "String",
-            "BAIDU_IP_LOCATION_AK",
-            "\"${localProperties.getProperty("breezy.baiduip.key") ?: ""}\""
-        )
-        it.buildConfigField(
-            "String",
             "BMKG_KEY",
             "\"${localProperties.getProperty("breezy.bmkg.key") ?: ""}\""
         )

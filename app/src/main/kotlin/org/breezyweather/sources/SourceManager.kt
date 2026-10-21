@@ -51,8 +51,6 @@ import org.breezyweather.sources.atmo.AtmoFranceService
 import org.breezyweather.sources.atmo.AtmoGrandEstService
 import org.breezyweather.sources.atmo.AtmoHdfService
 import org.breezyweather.sources.atmo.AtmoSudService
-import org.breezyweather.sources.baiduip.BaiduIPLocationService
-import org.breezyweather.sources.bmd.BmdService
 import org.breezyweather.sources.bmkg.BmkgService
 import org.breezyweather.sources.breezytz.BreezyTimeZoneService
 import org.breezyweather.sources.breezyupdatenotifier.BreezyUpdateNotifierService
@@ -92,7 +90,6 @@ import org.breezyweather.sources.imd.ImdService
 import org.breezyweather.sources.ims.ImsService
 import org.breezyweather.sources.infoplaza.InfoplazaService
 import org.breezyweather.sources.ipma.IpmaService
-import org.breezyweather.sources.ipsb.IpSbLocationService
 import org.breezyweather.sources.jma.JmaService
 import org.breezyweather.sources.knmi.KnmiService
 import org.breezyweather.sources.lhmt.LhmtService
@@ -137,8 +134,6 @@ class SourceManager @Inject constructor(
     atmoGrandEstService: AtmoGrandEstService,
     atmoHdfService: AtmoHdfService,
     atmoSudService: AtmoSudService,
-    baiduIPService: BaiduIPLocationService,
-    bmdService: BmdService,
     bmkgService: BmkgService,
     breezyTimeZoneService: BreezyTimeZoneService,
     breezyUpdateNotifierService: BreezyUpdateNotifierService,
@@ -168,7 +163,6 @@ class SourceManager @Inject constructor(
     infoplazaService: InfoplazaService,
     inmgbService: InmgbService,
     ipmaService: IpmaService,
-    ipSbService: IpSbLocationService,
     jmaService: JmaService,
     knmiService: KnmiService,
     lhmtService: LhmtService,
@@ -208,9 +202,7 @@ class SourceManager @Inject constructor(
 ) {
     // Location sources
     private val locationSourceList = persistentListOf(
-        androidLocationService,
-        ipSbService,
-        baiduIPService
+        androidLocationService
     )
 
     // Location search sources
@@ -249,7 +241,6 @@ class SourceManager @Inject constructor(
         atmoGrandEstService,
         atmoHdfService,
         atmoSudService,
-        bmdService,
         bmkgService,
         brightSkyService,
         chinaService,
