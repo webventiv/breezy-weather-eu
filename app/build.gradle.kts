@@ -353,7 +353,7 @@ configure<ApplicationExtension> {
             if (Config.isBreezy) {
                 res.directories += "src/res_breezy"
             } else {
-                res.directories += "src/res_fork"
+                res.directories += "src/res_wezr"
             }
         }
         getByName("freenet") {
@@ -362,7 +362,7 @@ configure<ApplicationExtension> {
             if (Config.isBreezy) {
                 res.directories += "src/res_breezy"
             } else {
-                res.directories += "src/res_fork"
+                res.directories += "src/res_wezr"
             }
         }
     }

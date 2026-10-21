@@ -1,6 +1,6 @@
 <div align="center">
 <br />
-<img src="app/src/res_fork/mipmap-xxxhdpi/ic_launcher_round.webp" alt="Breezy Weather EU fork icon" />
+<img src="app/src/res_wezr/mipmap-xxxhdpi/ic_launcher_round.webp" alt="WEZR Weather app icon" />
 </div>
 
 <h1 align="center">Breezy Weather EU (only personal use)</h1>
@@ -198,6 +198,6 @@ Otherwise, remember to:
 - Respect the project’s LICENSE
 - Avoid confusion with the Breezy Weather app:
   - Do NOT use the `breezy` flag when compiling releases you plan to distribute
-  - Change the app name in [`res_fork/values/strings.xml`](https://github.com/breezy-weather/breezy-weather/blob/main/app/src/res_fork/values/strings.xml)
-  - Change the app icons in the [`res_fork`](https://github.com/breezy-weather/breezy-weather/blob/main/app/src/res_fork) folders
+  - Change the app name in [`res_wezr/values/strings.xml`](https://github.com/breezy-weather/breezy-weather/blob/main/app/src/res_wezr/values/strings.xml)
+  - Change the app icons in the [`res_wezr`](https://github.com/breezy-weather/breezy-weather/blob/main/app/src/res_wezr) folders
   - Avoid installation conflicts: change the `applicationId` in [`build.gradle.kts`](https://github.com/breezy-weather/breezy-weather/blob/main/app/build.gradle.kts#L25)
